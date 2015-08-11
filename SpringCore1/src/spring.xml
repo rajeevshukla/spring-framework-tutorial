@@ -1,21 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
              http://www.springframework.org/schema/beans
-             http://www.springframework.org/schema/beans/spring-beans.xsd" default-init-method="init" default-destroy-method="destroy">
+             http://www.springframework.org/schema/beans/spring-beans.xsd
+             http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd"
+	default-init-method="init" default-destroy-method="destroy">
+	
+	<context:annotation-config></context:annotation-config>
+	<context:component-scan base-package="com.demo"></context:component-scan>
 
 	<bean name="employeeId" class="com.demo.Employee" scope="singleton" init-method="initMethod" destroy-method="destroyMethod">
-		<constructor-arg index="0" type="java.lang.String" 	name="employeeId" value="1001"> </constructor-arg>
-		<constructor-arg index="1" type="java.lang.String"  name="employeeName" value="Rajeev">	</constructor-arg>
-		<property name="address" ref="address"></property>
+		 <property name="employeeId" value="1001"></property>
+		 <property name="employeeName" value="Rajeev"></property>
+		 <property name="mobileNumber">
+		 <list>
+		 <value>787878787878</value>
+		 </list>
+		 </property>
+		 
+		 
+		 
 	</bean>
 
-	<bean id="address" class="com.demo.Address" scope="prototype">
+
+	<bean name="employeeWithAdress" class="com.demo.Employee" scope="singleton" parent="employeeId">
+           <property name="address" ref="address"></property>
+         <property name="mobileNumber">
+		 <list merge="true">
+		 <value>97979797979797</value>
+		 </list>
+		 </property>
+		   
+	</bean>
+
+
+	<bean id="address" class="com.demo.Address">
 		<property name="street" value="Pandav Nagar Complex"></property>
 		<property name="city" value="New Delhi"></property>
 		<property name="country" value="Inida"></property>
 	</bean>
-	
-
+   <bean  class="com.demo.MyBeanPostProcessor"></bean>
+   
+   <bean class="com.demo.MyCustomBeanFactory"></bean>
 </beans>

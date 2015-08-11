@@ -38,4 +38,11 @@ public class Address {
 				+ country + "]";
 	}
 	
+	public void init(){
+		System.out.println("default adress initilization");
+	}
+	public void destroy(){
+		System.out.println("default address destroy method.");
+	}
+	
 }

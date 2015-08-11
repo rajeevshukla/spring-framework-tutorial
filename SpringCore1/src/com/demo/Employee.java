@@ -6,6 +6,8 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
@@ -14,21 +16,19 @@ import org.springframework.context.ApplicationContextAware;
 @Repository //  spring bean
 @Controller // spring bean
 */
-public class Employee implements ApplicationContextAware {
+public class Employee implements ApplicationContextAware,InitializingBean,DisposableBean {
 
 	private String employeeId;
 	private String employeeName;
 	private List<String> mobileNumber; //we cannot autowire string,  & primitives,list
 	
+
 	private ApplicationContext applicationContext;
 	
 
 	private Address address;
 
-	public Employee(String employeeId, String employeeName) {
-		this.employeeId = employeeId;
-		this.employeeName = employeeName;
-	}
+	
 
 	public String getEmployeeId() {
 		return employeeId;
@@ -80,7 +80,7 @@ public class Employee implements ApplicationContextAware {
 	
 	public void initMethod(){
 		
-		System.out.println("Init method is called");
+		System.out.println("Init method of employee is called");
 	}
 
 	public void destroyMethod(){
@@ -88,5 +88,31 @@ public class Employee implements ApplicationContextAware {
 		System.out.println("Destroy method is called.");
 	}
 
+	public void init(){
+		
+		System.out.println("this default init method");
+		
+	}
+	
+	@Override
+	public void destroy(){
+		
+		System.out.println("this is  destroy method called. of disposable.");
+	}
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		System.out.println("after property set method is called of employee.");
+		
+	}
+	@PostConstruct
+	public void initAnnotatedMethod(){
+		System.out.println("Employe init annotated method ");
+	}
+	
+	@PreDestroy
+	public void destroyAnnotatedMethod(){
+		System.out.println("Destroy  employee annotated method");
+	}
 	
 }

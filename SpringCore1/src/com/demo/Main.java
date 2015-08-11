@@ -1,6 +1,5 @@
 package com.demo;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -10,26 +9,29 @@ public class Main {
 
 		AbstractApplicationContext context = new ClassPathXmlApplicationContext(
 				"spring.xml");
-	
 		context.registerShutdownHook();
 		
 		Employee employee = (Employee) context.getBean("employeeId");
-		System.out.println(employee); //by default spring beans are singleton. 
+	   	System.out.println(employee); //by default spring beans are singleton. 
 
 		System.out.println("Employee Id:"+employee.getEmployeeId());
 
-		System.out.println("=========");
+		System.out.println("========= Employee With Address ====");
+
+		Employee employee2 = (Employee) context.getBean("employeeWithAdress");
+	   	System.out.println(employee2); //by default spring beans are singleton. 
+
 		
-		Employee employee2 = (Employee) context.getBean("employeeId");
+		
 		//will return same adress as above 
 		//because spring provides singleton bean  means it reads xml on startup create an object 
 		//and return it to everyone whoever ask to get the bean. 
 	
-		System.out.println(" Checking employee object reference :: "+ (employee==employee2));
+		/*System.out.println(" Checking employee object reference :: "+ (employee==employee2));
 		
 		System.out.println("Checking address object in employee objects : "+(employee.getAddress()==employee2.getAddress()));
 				
-		//bean scope  
+		*///bean scope  
 		
 		//1:- singleton bean scope  (it means every time spring container will return same object)
 		//2:- prototype    (every time spring container will return a new object)
