@@ -10,17 +10,22 @@ public class MyBeanPostProcessor  implements BeanPostProcessor{
 			throws BeansException {
 
 		System.out.println("BeanPostProcessor :: Before initlizing bean "+beanName +"  Bean object "+bean);
-		
+
 		return bean;
 	}
 
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName)
 			throws BeansException {
-	
+
 		System.out.println("BeanPostProcessor :: After initlizing bean "+beanName +"  Bean object "+bean);
-		
-		
+
+
+		if(bean instanceof Validator){
+			Validator validator=(Validator)bean;
+			validator.validate();
+		}
+
 		return bean;
 	}
 

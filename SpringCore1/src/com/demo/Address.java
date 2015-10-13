@@ -1,6 +1,6 @@
 package com.demo;
 
-public class Address {
+public class Address  implements Validator {
 	
 	private String street;
 	private String city;
@@ -43,6 +43,11 @@ public class Address {
 	}
 	public void destroy(){
 		System.out.println("default address destroy method.");
+	}
+	
+	@Override
+	public void validate() {
+		System.out.println(" ============ Validating addresss from web service call. ==========");
 	}
 	
 }
