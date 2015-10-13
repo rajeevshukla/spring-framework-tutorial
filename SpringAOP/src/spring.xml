@@ -14,15 +14,20 @@
 	<bean id="businessLogic" class="com.demo.BusinessLogicClass">
 	</bean>
 
-	<bean id="secondyLogin" class="com.demo.aspects.LogginAspects">
+	<bean id="secondryLogin" class="com.demo.aspects.LogginAspects">
 	</bean>
 
    <aop:config>
-      <aop:aspect ref="secondyLogin">
-      <aop:pointcut expression="execution(* do*(..))" id="LoginPointCut"/>
-      <aop:before method="logBeforMethod" pointcut-ref="LoginPointCut"/>
-      <aop:after method="logAfterMethod" pointcut-ref="LoginPointCut"/>
+      
+      <aop:aspect ref="secondryLogin">
+      
+      	<aop:pointcut expression="execution(* do*(..))" id="LoginPointCut"/>
+   
+      	<aop:before method="logBeforMethod" pointcut-ref="LoginPointCut"/>
+      	<aop:after method="logAfterMethod" pointcut-ref="LoginPointCut"/>
+      
       </aop:aspect>   
+   
    </aop:config>
 
 </beans>
