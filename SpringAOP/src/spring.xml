@@ -9,7 +9,9 @@
              http://www.springframework.org/schema/aop
              http://www.springframework.org/schema/aop/spring-aop.xsd">
 
+ <!--  To use annotation in AOP -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	
 
 	<bean id="businessLogic" class="com.demo.BusinessLogicClass">
 	</bean>
