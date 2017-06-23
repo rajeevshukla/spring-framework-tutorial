@@ -51,7 +51,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public void saveEmployee(Employee employee) {
- 
+   
+		employeDao.save(employee);
+		System.out.println("Employee record saved successfully.");
 		
 	}
 

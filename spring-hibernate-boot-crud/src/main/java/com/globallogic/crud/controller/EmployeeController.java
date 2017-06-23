@@ -19,26 +19,26 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService employeeService;
-	
-	@RequestMapping(name="/employees")
+
+	@RequestMapping(name = "/employees")
 	@ResponseBody
-	public List<Employee> getEmployees(){
+	public List<Employee> getEmployees() {
 		System.out.println(employeeService.getAllEmployees());
 		System.out.println("inside get employees");
- 		return employeeService.getAllEmployees();
+		return employeeService.getAllEmployees();
 	}
- 	
+
 	@RequestMapping("employee/{empId}")
-	
-	public Employee findEmployeeById(@PathVariable("empId")Integer empId){
+
+	public Employee findEmployeeById(@PathVariable("empId") Integer empId) {
 		return employeeService.findEmployeeById(empId);
 	}
-	
-	
-	public ResponseEntity<Boolean> addEmployee(@RequestBody Employee employee){
-		
-		return  new ResponseEntity<Boolean>(HttpStatus.OK);
+
+	@RequestMapping("employee/add")
+	public ResponseEntity<Boolean> addEmployee(@RequestBody Employee employee) {
+
+		employeeService.saveEmployee(employee);
+		return new ResponseEntity<Boolean>(HttpStatus.OK);
 	}
-	
-	
+
 }
