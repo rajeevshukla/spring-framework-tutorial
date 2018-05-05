@@ -49,7 +49,10 @@ public class Employee implements ApplicationContextAware,InitializingBean,Dispos
 	public Address getAddress() {
 		// ask this address from container.. for every get request..
 		//how to access container inside a bean 
-		return (Address)applicationContext.getBean("address");
+		/*applicationContext.getBean(Address.class);
+		 applicationContext.getBean("address");*/
+		
+		return null;
 	}
 
 	public void setAddress(Address address) {
