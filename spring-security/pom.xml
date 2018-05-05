@@ -11,7 +11,7 @@
 
 	<name>spring-security</name>
 	<description>Spring security jwt integration</description>
-
+   
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -23,7 +23,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-	</properties>
+<!-- 		Below main class can be set as main class only is boot parent starter is avaialble
+		<start-class>com.globallogic.SpringSecurityApplication</start-class>
+ -->	</properties>
 
 	<dependencies>
 		<dependency>
@@ -86,6 +88,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.globallogic.SpringSecurityApplication</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
