@@ -21,7 +21,8 @@ public class UserDetailsServiceImpl  implements UserDetailsManager{
 	
 		 User  user = null;
 		// go to database user userdetails by username 
-		 List<User> users = userRepository.findUserByUserName(username);
+		 List<User> users = userRepository.findUserByUserName(username); 
+		 
 		  if(!users.isEmpty())
 			  user=users.get(0);
 		  System.out.println(user);
